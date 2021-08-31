@@ -2,11 +2,11 @@
   "nodes": {
     "nixpkgs": {
       "locked": {
-        "lastModified": 1630076329,
-        "narHash": "sha256-mkxPL5pXZv8cfHgjSW0oWfZRGSSlGwXy/7KR+2Mgf3M=",
+        "lastModified": 1630481079,
+        "narHash": "sha256-leWXLchbAbqOlLT6tju631G40SzQWPqaAXQG3zH1Imw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "74d017edb6717ad76d38edc02ad3210d4ad66b96",
+        "rev": "110a2c9ebbf5d4a94486854f18a37a938cfacbbb",
         "type": "github"
       },
       "original": {
@@ -16,9 +16,80 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1622516815,
+        "narHash": "sha256-ZjBd81a6J3TwtlBr3rHsZspYUwT9OdhDk+a/SgSEf7I=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "7e9b0dff974c89e070da1ad85713ff3c20b0ca97",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "21.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1622516815,
+        "narHash": "sha256-ZjBd81a6J3TwtlBr3rHsZspYUwT9OdhDk+a/SgSEf7I=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "7e9b0dff974c89e070da1ad85713ff3c20b0ca97",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "21.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "sample-searx-plugin": "sample-searx-plugin",
+        "tgwf-searx-plugin": "tgwf-searx-plugin"
+      }
+    },
+    "sample-searx-plugin": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1630416619,
+        "narHash": "sha256-qitjS9p1agJpgVlKfF7d4fRcL3R0DNMzGTNOsWDoSmI=",
+        "owner": "efim",
+        "repo": "sample-searx-plugin",
+        "rev": "e0d70e8e4eb015f52e00402d1cd8e22a6495df7e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "efim",
+        "repo": "sample-searx-plugin",
+        "type": "github"
+      }
+    },
+    "tgwf-searx-plugin": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_3"
+      },
+      "locked": {
+        "lastModified": 1630416400,
+        "narHash": "sha256-Si8HTMDrnPvGTUEA31YFa84EpmGm+cSyCrUq7skZ4wE=",
+        "owner": "ngi-nix",
+        "repo": "searx-thegreenopenweb",
+        "rev": "271e962a325277b186f7357143da04e3bc6ca27b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ngi-nix",
+        "ref": "nix-flake",
+        "repo": "searx-thegreenopenweb",
+        "type": "github"
       }
     }
   },

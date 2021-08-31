@@ -1,12 +1,21 @@
 {
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.05";
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.05";
+    sample-searx-plugin.url = "github:efim/sample-searx-plugin";
+    tgwf-searx-plugin.url = "github:ngi-nix/searx-thegreenopenweb/nix-flake";
+  };
 
-  outputs = { self, nixpkgs }: {
+  outputs = { self, nixpkgs, sample-searx-plugin, tgwf-searx-plugin }: {
 
     nixosConfigurations.foo-container = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules =
         [
+
+          sample-searx-plugin.nixosModules.sample-searx-plugin-module
+
+          tgwf-searx-plugin.nixosModules.tgwf-green-results-searx-plugin-module
+
           ({ pkgs, ... }: {
             boot.isContainer = true;
 
@@ -47,6 +56,7 @@
               };
             };
           })
+
         ];
     };
 
