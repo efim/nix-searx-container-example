@@ -1,0 +1,91 @@
+#+TITLE: Readme for sample Searx container in Nix
+* Goal
+This directory contains configuration needed to setup Searx instance in a container.
+
+Goal is to provide example of using flakes to include "external plugins" into Searx installation.
+So that flake.nix would resemble as much as possible real server configuration
+
+And also provide example of server configuration done using nix
+
+* Notes on how to run the container
+Containers in NixOS provide opportunity to create example configuration that could have been running on the server that provides Searx
+with that configuration being uncoupled from main system config.
+
+Documentation on nix containers: https://nixos.org/manual/nixos/stable/#ch-containers
+
+Steps to run the container:
+- presupposes that you run NixOS
+- create the container
+  + when want configuration taken directly from the github
+  #+begin_src bash
+    sudo nixos-container create bar --flake github:efim/nix-searx-container-example#foo-container
+  #+end_src
+  + *or* clone the repository, cd into in and use
+  #+begin_src bash
+    sudo nixos-container create bar --flake .#foo-container
+  #+end_src
+- start the container:
+  #+begin_src bash
+    nixos-container start bar
+  #+end_src
+- check the container ip:
+  #+begin_src bash
+    nixos-container show-ip bar
+  #+end_src
+- check that Searx is running & awailable in browser
+  on address <container-ip-from-previous-step>:8080
+  and that in "Preferences > Plugins" there are two items for plugins in the end of the list:
+  + Only show green hosted results
+  + Test plugin
+- ps: container has no access to internet, so for searches to work some additional modifications to container configuration are needed
+  this will not be a problem for searx which is installed directly onto nix managed server
+
+** Troubleshooting:
+In case Searx is not running it's possible to log into the container :
+#+begin_src bash
+nixos-container login bar
+#+end_src
+You will be prompted for your host password first
+Then put into container shell, where you could authorize as container user 'foo' with password 'foo'
+
+Logs of the Searx can be found with
+#+begin_src bash
+systemctl status searx
+#+end_src
+
+To exit container press `Ctrl + ]` three times quickly
+* Notes on Searx external plugins
+Searx has documenation on setting up "external plugins":
+https://searx.github.io/searx/dev/plugins.html#external-plugins
+
+I don't fully understand python setuptools, so not sure how to correctly create a plugin
+Hovewer for existing external plugins that I found documentaion turned out to be correct:
+
+To install such plugin Searx needs two things:
+1. Have plugin python module be installed into Searx env via 'pip install'
+2. Add plugin module name into Searx configuration under `plugins` section
+* Notes on searx installation in the Nix managed server
+To install & configure Searx on server with NixOS
+examine & modify options that are dedicated to it:
+
+- [[https://search.nixos.org/options?channel=21.05&from=0&size=50&sort=relevance&type=packages&query=searx][Options for Searx]]
+- [[https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/services/networking/searx.nix][Code for Searx module in nixpkgs master]]
+
+And if the server configured usnig nix, then adding external modules could be as easy as
+ 1. add this flake as input
+    #+begin_src nix
+ inputs = {
+   nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.05";
+   tgwf-searx-plugin.url = "github:ngi-nix/searx-thegreenopenweb/nix-flake"; # TODO change to TGWF repo
+ };
+    #+end_src
+ 2. add module for import:
+    #+begin_src nix
+ modules = [ tgwf-searx-plugin.nixosModules.tgwf-green-results-searx-plugin-module ]
+    #+end_src
+ This will add overlay for searx, to depend on plugin and have it installed in the python env
+ and add configuration line to mark plugin for availability in settins
+
+* Lins to nix resourses:
+- how to setup flakes: https://www.tweag.io/blog/2020-05-25-flakes/
+- manual: https://nixos.org/manual/nixos/stable/
