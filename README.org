@@ -6,6 +6,8 @@ Goal is to provide example of using flakes to include "external plugins" into Se
 So that flake.nix would resemble as much as possible real server configuration
 
 And also provide example of server configuration done using nix
+- see [[file:flake.nix][`flake.nix`]] if you use configure server via flake
+- see [[file:non-flake-config.nix][`non-flake-config.nix`]] if you use configuration in stable style
 
 * Notes on how to run the container
 Containers in NixOS provide opportunity to create example configuration that could have been running on the server that provides Searx
@@ -16,14 +18,18 @@ Documentation on nix containers: https://nixos.org/manual/nixos/stable/#ch-conta
 Steps to run the container:
 - presupposes that you run NixOS
 - create the container
-  + when want configuration taken directly from the github
+  + (with flakes #1) when want configuration taken directly from the github
   #+begin_src bash
     sudo nixos-container create bar --flake github:efim/nix-searx-container-example#foo-container
   #+end_src
-  + *or* clone the repository, cd into in and use
+  + *or* (with flakes #2) clone the repository, cd into it and use
   #+begin_src bash
     sudo nixos-container create bar --flake .#foo-container
   #+end_src
+  + *or* (without flakes) clone the repository, cd into it and use
+    #+begin_src nix
+    sudo nixos-container create bar --config-file non-flake-config.nix
+    #+end_src
 - start the container:
   #+begin_src bash
     nixos-container start bar
