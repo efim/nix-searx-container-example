@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let
+  # Step 1: fetch attrset from plugin repositories
   tgwf-searx-plugin = builtins.fetchGit {
     url = "https://github.com/ngi-nix/tgwf-searx-plugins.git";
     ref = "nix-flake"; # branch name
@@ -14,11 +15,14 @@ let
 in
 {
 
+  # Step 2: add module into `imports`
+  # it will install python code & modify Searx configuration
   imports = [
     (import tgwf-searx-plugin).nixosModules.tgwf-green-results-searx-plugin-module
     (import sample-plugin).nixosModules.sample-searx-plugin-module
   ];
 
+  # Nothing in the main configuration of the server needs to change
   networking.hostName = "foo"; # Define your hostname.
   #
   environment.systemPackages = with pkgs; [

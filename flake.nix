@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.05";
+    # Step 1: add plugin flake as input
     sample-searx-plugin.url = "github:efim/sample-searx-plugin";
     tgwf-searx-plugin.url = "github:ngi-nix/searx-thegreenopenweb/nix-flake";
   };
@@ -12,10 +13,14 @@
       modules =
         [
 
+          # Step 2: import module from flake,
+          # it will install python code & modify Searx configuration
           sample-searx-plugin.nixosModules.sample-searx-plugin-module
 
           tgwf-searx-plugin.nixosModules.tgwf-green-results-searx-plugin-module
 
+          # Main configuration of server that declares Searx service
+          #   nothing needs to change here for plugin installation
           ({ pkgs, ... }: {
             boot.isContainer = true;
 
