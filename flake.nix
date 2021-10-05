@@ -2,7 +2,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.05";
     # Step 1: add plugin flake as input
-    sample-searx-plugin.url = "github:efim/sample-searx-plugin";
+    sample-searx-plugin.url = "github:efim/searx_external_plugin_example";
     tgwf-searx-plugin.url = "github:ngi-nix/searx-thegreenopenweb/nix-flake";
   };
 

@@ -1,12 +1,44 @@
 {
   "nodes": {
+    "flake-compat": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1627913399,
+        "narHash": "sha256-hY8g6H2KFL8ownSiFeMOjwPC8P0ueXpCVEbxgda3pko=",
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "rev": "12c64ca55c1014cdc1b16ed5a804aa8576601ff2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
+    "flake-compat_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1627913399,
+        "narHash": "sha256-hY8g6H2KFL8ownSiFeMOjwPC8P0ueXpCVEbxgda3pko=",
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "rev": "12c64ca55c1014cdc1b16ed5a804aa8576601ff2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1630481079,
-        "narHash": "sha256-leWXLchbAbqOlLT6tju631G40SzQWPqaAXQG3zH1Imw=",
+        "lastModified": 1633267966,
+        "narHash": "sha256-gFKvZ5AmV/dDTKXVxacPbXe4R0BsFpwtVaQxuIm2nnk=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "110a2c9ebbf5d4a94486854f18a37a938cfacbbb",
+        "rev": "7daf35532d2d8bf5e6f7f962e6cd13a66d01a71d",
         "type": "github"
       },
       "original": {
@@ -57,32 +89,34 @@
     },
     "sample-searx-plugin": {
       "inputs": {
+        "flake-compat": "flake-compat",
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1630416619,
-        "narHash": "sha256-qitjS9p1agJpgVlKfF7d4fRcL3R0DNMzGTNOsWDoSmI=",
+        "lastModified": 1631021560,
+        "narHash": "sha256-CKqe+ejhpLu3dT5OYT9cJFYNbLCepzJLULnrCwvnbKU=",
         "owner": "efim",
-        "repo": "sample-searx-plugin",
-        "rev": "e0d70e8e4eb015f52e00402d1cd8e22a6495df7e",
+        "repo": "searx_external_plugin_example",
+        "rev": "fccdb6c8e8592b5781b35c9af187be1ae3da69f8",
         "type": "github"
       },
       "original": {
         "owner": "efim",
-        "repo": "sample-searx-plugin",
+        "repo": "searx_external_plugin_example",
         "type": "github"
       }
     },
     "tgwf-searx-plugin": {
       "inputs": {
+        "flake-compat": "flake-compat_2",
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1630416400,
-        "narHash": "sha256-Si8HTMDrnPvGTUEA31YFa84EpmGm+cSyCrUq7skZ4wE=",
+        "lastModified": 1630933576,
+        "narHash": "sha256-BhUEDHp/PIrwjIH7WdhsiICPTXaUHpv16xqrWnrn9mk=",
         "owner": "ngi-nix",
         "repo": "searx-thegreenopenweb",
-        "rev": "271e962a325277b186f7357143da04e3bc6ca27b",
+        "rev": "b7d9069b288940bb08d25c617f2a5d7771fe23d3",
         "type": "github"
       },
       "original": {
